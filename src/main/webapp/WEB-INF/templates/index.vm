@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+    <title>GenericMavenizedGAEProject</title>
+    <script type="text/javascript">
+        $(function () {
+            $('#jtarget').text("jQuery 1.4.2 loaded!");
+        });
+    </script>
+</head>
+<body>
+
+<h1>GenericMavenizedGAEProject</h1>
+
+<p>This sample project is suitable for git cloning and modification into your own Google App Engine application.</p>
+
+
+<h2>Features</h2>
+<ol>
+    <li>Maven-ized for dependency and lifecycle management!</li>
+    <li>Uses Velocity templating already preconfigured!</li>
+    <li id="jtarget">Comes with jQuery 1.4.2!</li>
+    <li>Siena persistence built-in: (Siena needs a siena.properties file to sit in the folder with the classes. So if your class is in:
+        <code>java/your.namespace.models</code>
+        then the siena.properties file must sit in
+        <code>resources/your.namespace.models/</code></li>
+    <li>GAE security preconfigured for the /admin/* folder</li>
+</ol>
+
+<p>Git Clone this and then git pull it later if you need to get updates and features.</p>
+</body>
+</html>
+

@@ -1,20 +1,12 @@
-Several things were done here.
+GenericMavenizedGAEProject
 
-Because maven is awesome, I only really needed the pom.xml file from a working project. 
+This sample project is suitable for git cloning and modification into your own Google App Engine application.
+Features
 
-In this case, I have created this project with the pom.xml from this maven-gae-plugin example:
+   1. Maven-ized for dependency and lifecycle management!
+   2. Uses Velocity templating already preconfigured!
+   3. Comes with jQuery 1.4.2!
+   4. Siena persistence built-in: (Siena needs a siena.properties file to sit in the folder with the classes. So if your class is in: java/your.namespace.models then the siena.properties file must sit in resources/your.namespace.models/
+   5. GAE security preconfigured for the /admin/* folder
 
-http://maven-gae-plugin.googlecode.com/svn/example/jsp-persistence-app/pom.xml
-
-To run the local development server, just do :
-
-$ mvn gae:run
-
-However, there were a few problems to overcome. 
-
-1. The Checksum Failed on some of the dependencies:
-This is apparently a known issue with maven. 
-
-2. Run gae:unpack
-This will extract the appropriate Google App Engine files into your local maven repository. Which helps. 
-
+Git Clone this and then git pull it later if you need to get updates and features.
