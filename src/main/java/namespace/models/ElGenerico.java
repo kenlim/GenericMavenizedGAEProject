@@ -3,7 +3,7 @@ package namespace.models;
 import siena.*;
 
 @Table("losgenericos")
-public class ElGenerico {
+public class ElGenerico extends Model{
     @Id
     public Long id;
 

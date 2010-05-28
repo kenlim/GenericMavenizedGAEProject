@@ -92,7 +92,8 @@
     </dependencies>
 
     <build>
-        <finalName>mw2do</finalName>
+        <!-- TODO: Change final name -->
+        <finalName>genericMavenizedGAEProject</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
