@@ -5,10 +5,7 @@ import com.vercer.engine.persist.annotation.Type;
 
 public class TwiggyTitle {
     String name;
-
-    @Type(Text.class)
-    String description;
-
+    @Type(Text.class) String description;
     int index;
     int page;
     String image;
