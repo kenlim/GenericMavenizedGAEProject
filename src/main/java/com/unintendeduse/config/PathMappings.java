@@ -1,10 +1,10 @@
-package namespace.config;
+package com.unintendeduse.config;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.inject.Provides;
 import com.google.inject.servlet.ServletModule;
-import namespace.IndexServlet;
+import com.unintendeduse.IndexServlet;
 
 class PathMappings extends ServletModule {
     @Override

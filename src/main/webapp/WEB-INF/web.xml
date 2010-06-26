@@ -21,7 +21,7 @@
     <!-- Filters Finished! -->
 
     <listener>
-        <listener-class>namespace.config.ContextListener</listener-class>
+        <listener-class>com.unintendeduse.config.ContextListener</listener-class>
     </listener>
 
     <security-constraint>

@@ -1,4 +1,4 @@
-package namespace.config;
+package com.unintendeduse.config;
 
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.Guice;

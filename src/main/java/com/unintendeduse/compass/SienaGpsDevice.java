@@ -1,7 +1,7 @@
-package namespace.compass;
+package com.unintendeduse.compass;
 
 
-import namespace.models.ElGenerico;
+import com.unintendeduse.models.ElGenerico;
 import org.compass.core.CompassSession;
 import org.compass.gps.CompassGpsException;
 import org.compass.gps.IndexPlan;

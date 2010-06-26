@@ -1,4 +1,4 @@
-package namespace.compass;
+package com.unintendeduse.compass;
 
 import com.google.inject.Provider;
 import org.compass.core.Compass;
@@ -12,7 +12,7 @@ public class CompassProvider implements Provider<Compass> {
 
         return new CompassConfiguration().setConnection("gae://index")
                 .setSetting(CompassEnvironment.ExecutorManager.EXECUTOR_MANAGER_TYPE, "disabled")
-                .addScan("namespace.models")
+                .addScan("com.unintendeduse.models")
                 .buildCompass();
     }
 

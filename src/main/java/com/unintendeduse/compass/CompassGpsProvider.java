@@ -1,4 +1,4 @@
-package namespace.compass;
+package com.unintendeduse.compass;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;

@@ -1,4 +1,4 @@
-package namespace.models;
+package com.unintendeduse.models;
 
 import siena.*;
 

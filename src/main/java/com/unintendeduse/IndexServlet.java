@@ -1,4 +1,4 @@
-package namespace;
+package com.unintendeduse;
 
 import com.google.inject.Singleton;
 import org.apache.velocity.Template;
