@@ -10,7 +10,8 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>mw2do</name>
+    <!-- TODO: Change name -->
+    <name>GenericMavenizedGAEProject</name>
 
 
     <dependencies>
