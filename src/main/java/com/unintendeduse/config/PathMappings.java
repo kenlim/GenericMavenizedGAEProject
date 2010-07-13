@@ -14,7 +14,6 @@ class PathMappings extends ServletModule {
     protected void configureServlets() {
         // Do your path mappings here.
         serve("/twiggy").with(TwiggyController.class);
-        serve("/").with(IndexServlet.class);
     }
 
     @Provides

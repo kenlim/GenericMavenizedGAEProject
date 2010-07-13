@@ -1,10 +1,8 @@
 package com.unintendeduse.twigpersist;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.unintendeduse.twigpersist.TwiggyTitle;
 import com.vercer.engine.persist.ObjectDatastore;
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
@@ -39,11 +37,10 @@ public class TwiggyController extends VelocityViewServlet {
     }
 
 
-
     @Override
     protected void fillContext(Context context, HttpServletRequest request) {
         Iterator<TwiggyTitle> titleQueryResultIterator = datastore.find(TwiggyTitle.class);
-        context.put("twiggies", Iterators.toArray(titleQueryResultIterator, TwiggyTitle.class));
+        context.put("twiggies", titleQueryResultIterator);
 
     }
 
