@@ -7,12 +7,12 @@
     <title>GenericMavenizedGAEProject</title>
     <script type="text/javascript">
         $(function () {
-            $('#jtarget').text("jQuery 1.4.2 loaded!");
+            $('#jtarget').html("<a href='http://jquery.com/'>jQuery 1.4.2</a> preconfigured!");
         });
     </script>
 </head>
 <body>
-
+    
 <h1>GenericMavenizedGAEProject</h1>
 
 <p>This sample project is suitable for git cloning and modification into your own Google App Engine application.</p>
@@ -21,12 +21,10 @@
 <h2>Features</h2>
 <ol>
     <li>Maven-ized for dependency and lifecycle management!</li>
-    <li>Uses Velocity templating already preconfigured!</li>
+    <li><a href="http://velocity.apache.org/tools/releases/1.4/view/">VelocityViewServlet</a> templating preconfigured!</li>
     <li id="jtarget">Comes with jQuery 1.4.2!</li>
-    <li>Siena persistence built-in: (Siena needs a siena.properties file to sit in the folder with the classes. So if your class is in:
-        <code>java/your.namespace.models</code>
-        then the siena.properties file must sit in
-        <code>resources/your.namespace.models/</code></li>
+    <li>Uses <a href="http://code.google.com/p/twig-persist/">Twig Persist</a>!</li></li>
+
     <li>GAE security preconfigured for the /admin/* folder</li>
 </ol>
 

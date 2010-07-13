@@ -4,8 +4,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.inject.Provides;
 import com.google.inject.servlet.ServletModule;
-import com.unintendeduse.IndexServlet;
-import com.unintendeduse.twigpersist.TwiggyController;
+import com.unintendeduse.repositories.TwiggyController;
 import com.vercer.engine.persist.ObjectDatastore;
 import com.vercer.engine.persist.annotation.AnnotationObjectDatastore;
 

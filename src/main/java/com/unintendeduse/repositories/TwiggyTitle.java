@@ -1,4 +1,4 @@
-package com.unintendeduse.twigpersist;
+package com.unintendeduse.repositories;
 
 import com.google.appengine.api.datastore.Text;
 import com.vercer.engine.persist.annotation.Type;

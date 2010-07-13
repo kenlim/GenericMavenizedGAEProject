@@ -1,4 +1,4 @@
-package com.unintendeduse.twigpersist;
+package com.unintendeduse.repositories;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.inject.Inject;
@@ -46,6 +46,6 @@ public class TwiggyController extends VelocityViewServlet {
 
     @Override
     protected Template getTemplate(HttpServletRequest request, HttpServletResponse response) {
-        return getTemplate("/twigpersist/twiggyController.vm");
+        return getTemplate("/repositories/twiggyController.vm");
     }
 }
