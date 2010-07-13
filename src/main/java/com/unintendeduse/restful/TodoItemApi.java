@@ -1,5 +1,6 @@
 package com.unintendeduse.restful;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.unintendeduse.models.TodoItem;
 import com.unintendeduse.repositories.TodoItemRepository;
@@ -7,54 +8,61 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
+import java.util.Map;
 
 @Path("/todo")
 public class TodoItemApi {
     private Logger logger = LoggerFactory.getLogger(TodoItemApi.class);
-    private TodoItemRepository stackRepository;
+    private TodoItemRepository todoItemRepository;
 
     @Inject
-    public TodoItemApi(TodoItemRepository stackRepository) {
-        this.stackRepository = stackRepository;
+    public TodoItemApi(TodoItemRepository todoItemRepository) {
+        this.todoItemRepository = todoItemRepository;
     }
 
     @POST
     @Path("/create")
     @Produces("application/json")
-    public TodoItem createNew(@FormParam("name") String name,
+    public TodoItem createNew(@FormParam("task") String task,
                               @FormParam("description") String description) {
-        return null;
+        TodoItem todoItem = new TodoItem();
+        todoItem.setTask(task);
+        todoItem.setTaskDescription(description);
+        return todoItemRepository.save(todoItem);
     }
 
     @GET
     @Path("/")
     @Produces("application/json")
     public Object readAllTodoItems() {
-        return null;
+        return todoItemRepository.getAllTodoItems();
     }
 
     @GET
     @Path("/{id}")
     @Produces("application/json")
     public TodoItem readTodoWithId(@PathParam("id") Long id) {
-        return null;
+        return todoItemRepository.getTodoWithId(id);
     }
 
     @POST
     @Path("/{id}")
     @Produces("application/json")
     public TodoItem updateTodo(@PathParam("id") Long id,
-                                @FormParam("name") String name,
+                                @FormParam("task") String task,
                                 @FormParam("description") String description) {
+        TodoItem todoItem = readTodoWithId(id);
+        todoItem.setTask(task);
+        todoItem.setTaskDescription(description);
+        return todoItemRepository.update(todoItem);
 
-        return null;
     }
 
     @POST
     @Path("/{id}/delete")
     @Produces("application/json")
-    public TodoItem deleteTodo(@PathParam("id") Long id) {
-
-        return null;
+    public Map<String, String> deleteTodo(@PathParam("id") Long id) {
+        todoItemRepository.deleteTodo(id);
+        return ImmutableMap.of("Status", "OK", "Deleted item", "id");
     }
 }
