@@ -1,6 +1,8 @@
 package com.unintendeduse.restful;
 
+import com.google.appengine.api.datastore.QueryResultIterator;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 import com.unintendeduse.models.TodoItem;
 import com.unintendeduse.repositories.TodoItemRepository;
@@ -34,8 +36,8 @@ public class TodoItemApi {
     @GET
     @Path("/")
     @Produces("application/json")
-    public Object readAllTodoItems() {
-        return todoItemRepository.getAllTodoItems();
+    public TodoItem[] readAllTodoItems() {
+        return Iterators.toArray(todoItemRepository.getAllTodoItems(), TodoItem.class);
     }
 
     @GET
