@@ -7,11 +7,40 @@
     <!-- TODO: Change display-name -->
     <display-name>GenericMavenizedGAEProject</display-name>
 
+    <!-- Resteasy Guice webapp integration -->
+       <context-param>
+           <param-name>resteasy.servlet.mapping.prefix</param-name>
+           <param-value>/api</param-value>
+       </context-param>
+
+        <context-param>
+           <param-name>resteasy.guice.modules</param-name>
+           <param-value>com.unintendeduse.config.RestEasyModule</param-value>
+       </context-param>
+
+       <listener>
+           <listener-class>
+               org.jboss.resteasy.plugins.guice.GuiceResteasyBootstrapServletContextListener
+           </listener-class>
+       </listener>
+
+       <servlet>
+           <servlet-name>Resteasy</servlet-name>
+           <servlet-class>
+               org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+           </servlet-class>
+       </servlet>
+
     <!-- Filters! -->
     <filter>
         <filter-name>guiceFilter</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
     </filter>
+
+    <servlet-mapping>
+         <servlet-name>Resteasy</servlet-name>
+         <url-pattern>/api/*</url-pattern>
+     </servlet-mapping>
 
     <filter-mapping>
         <filter-name>guiceFilter</filter-name>
