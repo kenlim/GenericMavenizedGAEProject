@@ -41,6 +41,14 @@ public class TodoItemApi {
     }
 
     @GET
+    @Path("/datatable")
+    @Produces("application/json")
+    public Map<String, Object> produceDatatableJson() {
+        TodoItem[] todoItems = readAllTodoItems();
+
+    }
+
+    @GET
     @Path("/{id}")
     @Produces("application/json")
     public TodoItem readTodoWithId(@PathParam("id") Long id) {
