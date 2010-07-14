@@ -6,46 +6,34 @@ import com.google.inject.Singleton;
 import com.vercer.engine.persist.ObjectDatastore;
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.tools.view.VelocityView;
 import org.apache.velocity.tools.view.VelocityViewServlet;
+import org.apache.velocity.tools.view.ViewToolContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Iterator;
 
 @Singleton
-public class TwiggyController extends VelocityViewServlet {
+public class TwiggyController extends HttpServlet {
     private ObjectDatastore datastore;
+    private VelocityView velocityView;
 
     @Inject
-    public TwiggyController(ObjectDatastore datastore) {
-
-        this.datastore = datastore;
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TwiggyTitle twiggyTitle = new TwiggyTitle();
-
-        twiggyTitle.setName(request.getParameter("name"));
-        twiggyTitle.setDescription(request.getParameter("description"));
-
-
-        Key key = datastore.store().instance(twiggyTitle).returnKeyNow();
-        response.sendRedirect("/twiggy");
-    }
-
-
-    @Override
-    protected void fillContext(Context context, HttpServletRequest request) {
-        Iterator<TwiggyTitle> titleQueryResultIterator = datastore.find(TwiggyTitle.class);
-        context.put("twiggies", titleQueryResultIterator);
+    public TwiggyController(VelocityView velocityView) {
+        this.velocityView = velocityView;
 
     }
 
     @Override
-    protected Template getTemplate(HttpServletRequest request, HttpServletResponse response) {
-        return getTemplate("/repositories/twiggyController.vm");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ViewToolContext context = velocityView.createContext(req, resp);
+        Template template = velocityView.getTemplate("/twigpersist/twiggyController.vm");
+        System.out.println("ima gonna render this bastard");
+        velocityView.merge(template, context, resp.getWriter());
+        
     }
 }

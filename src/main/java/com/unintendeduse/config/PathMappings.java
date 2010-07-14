@@ -7,6 +7,10 @@ import com.google.inject.servlet.ServletModule;
 import com.unintendeduse.repositories.TwiggyController;
 import com.vercer.engine.persist.ObjectDatastore;
 import com.vercer.engine.persist.annotation.AnnotationObjectDatastore;
+import org.apache.velocity.tools.view.JeeContextConfig;
+import org.apache.velocity.tools.view.VelocityView;
+
+import javax.servlet.ServletContext;
 
 class PathMappings extends ServletModule {
     @Override
@@ -24,6 +28,11 @@ class PathMappings extends ServletModule {
     @Provides
     ObjectDatastore getObjectDatastore() {
         return new AnnotationObjectDatastore();
+    }
+
+    @Provides
+    VelocityView getVelocityViewEngine(ServletContext servletContext) {
+        return new VelocityView(servletContext);
     }
 
 }
