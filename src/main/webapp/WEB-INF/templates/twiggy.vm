@@ -1,0 +1,9 @@
+<html>
+<head>
+<title>twiggy template</title>
+</head>
+<body>
+<h1>/twiggy.vm loaded and rendered...</h1>
+<h2>$message</h2>
+</body>
+</html>

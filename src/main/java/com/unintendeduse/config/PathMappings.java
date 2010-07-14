@@ -5,6 +5,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.inject.Provides;
 import com.google.inject.servlet.ServletModule;
 import com.unintendeduse.repositories.TwiggyController;
+import com.unintendeduse.view.GuicedVelocityViewServlet;
 import com.vercer.engine.persist.ObjectDatastore;
 import com.vercer.engine.persist.annotation.AnnotationObjectDatastore;
 import org.apache.velocity.tools.view.JeeContextConfig;
@@ -17,6 +18,7 @@ class PathMappings extends ServletModule {
     protected void configureServlets() {
         // Do your path mappings here.
         serve("/twiggy").with(TwiggyController.class);
+        serve("*.vm").with(GuicedVelocityViewServlet.class);
     }
 
     @Provides

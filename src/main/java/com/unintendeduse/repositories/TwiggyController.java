@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 import com.vercer.engine.persist.ObjectDatastore;
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.tools.view.ServletUtils;
 import org.apache.velocity.tools.view.VelocityView;
 import org.apache.velocity.tools.view.VelocityViewServlet;
 import org.apache.velocity.tools.view.ViewToolContext;
@@ -31,9 +32,11 @@ public class TwiggyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ViewToolContext context = velocityView.createContext(req, resp);
-        Template template = velocityView.getTemplate("/twigpersist/twiggyController.vm");
-        System.out.println("ima gonna render this bastard");
-        velocityView.merge(template, context, resp.getWriter());
-        
+        String templatePath = ServletUtils.getPath(req);
+        Template template = velocityView.getTemplate(templatePath + ".vm");
+
+
+        context.put("message", "hello world");
+        velocityView.merge(template, context, resp.getWriter());   
     }
 }
