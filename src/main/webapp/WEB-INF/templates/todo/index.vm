@@ -11,46 +11,65 @@
         @import "/css/datatables/demo_page.css";
         @import "/css/datatables/demo_table.css";
     </style>
-    <script type="text/javascript" language="javascript" src="/js/jquery.dataTables.js"></script>
+
+    <style type="type/css">
+        input { display: block; }
+    </style>
+
+    <script type="text/javascript" language="javascript" src="/js/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript" charset="utf-8">
         jQ(document).ready(function() {
-            jQ('#example').dataTable( {
+            oTable = jQ('#example').dataTable( {
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "/api/todo/"
+                "bJQueryUI": true,
+                "sAjaxSource": "/api/todo/datatable"
             } );
+
+            jQ('#createTask').submit(function() {
+                jQ.post('/api/todo/create',
+                        jQ(this).serialize(),
+                        function(task) {
+                            oTable.fnAddData([task.task, task.taskDescription]);
+                        },
+                        "json");
+                jQ("#description").
+                jQ("#task").select();
+                return false;
+            });
         } );
+
     </script>
 </head>
-<body id="dt_example">
-<div id="container">
-    <div class="full_width big">
-        <i>DataTables</i> server-side processing example
-    </div>
+<body>
+<div>
+    <h1>TodoItems</h1>
 
-    <h1>Preamble</h1>
+    <form action="/api/todo/create" method="POST" id="createTask" >
+        <fieldset>
+            <legend>Create New Task</legend>
+            
+            <label for="task">Task</label>
+            <input type="text" name="task" id="task"/>
 
-    <p>There are many ways to get your data into DataTables, and if you are working with seriously large databases, you
-        might want to consider using the server-side options that DataTables provides. Basically all of the paging,
-        filtering, sorting etc that DataTables does can be handed off to a server (or any other data source - Google
-        Gears or Adobe Air for example!) and DataTables is just an events and display module.</p>
 
-    <p>The example here shows a very simple display of the CSS data (used in all my other examples), but in this
-        instance coming from the server on each draw. Filtering, multi-column sorting etc all work as you would
-        expect.</p>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" />
 
-    <h1>Live example</h1>
+            <input type="submit" value="Create New" />
+        </fieldset>
 
-    <div id="dynamic">
+    </form>
+
+
+    <h1>Full Listing</h1>
+    <div>
         <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
             <thead>
             <tr>
-                <th width="20%">Rendering engine</th>
-                <th width="25%">Browser</th>
-                <th width="25%">Platform(s)</th>
-                <th width="15%">Engine version</th>
-                <th width="15%">CSS grade</th>
+                <th width="30%">Task</th>
+                <th width="70%">Description</th>
             </tr>
             </thead>
             <tbody>
@@ -60,11 +79,8 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>Task</th>
+                <th>Description</th>
             </tr>
             </tfoot>
         </table>

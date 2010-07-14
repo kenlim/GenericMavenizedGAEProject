@@ -6,10 +6,14 @@ import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 import com.unintendeduse.models.TodoItem;
 import com.unintendeduse.repositories.TodoItemRepository;
+import com.unintendeduse.restful.datatable.DataTableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Path("/todo")
@@ -36,17 +40,26 @@ public class TodoItemApi {
     @GET
     @Path("/")
     @Produces("application/json")
-    public TodoItem[] readAllTodoItems() {
-        return Iterators.toArray(todoItemRepository.getAllTodoItems(), TodoItem.class);
+    public List<TodoItem> readAllTodoItems() {
+        ArrayList<TodoItem> result = new ArrayList<TodoItem>();
+        Iterators.addAll(result, todoItemRepository.getAllTodoItems());
+        return result;
     }
 
     @GET
     @Path("/datatable")
     @Produces("application/json")
     public Map<String, Object> produceDatatableJson() {
-        TodoItem[] todoItems = readAllTodoItems();
+        List<TodoItem> list = readAllTodoItems();
+        List<List<String>> aaTable = DataTableHelper.transformIntoListOfListOfStrings(list);
 
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("aaData", aaTable);
+
+        return map;
     }
+
+
 
     @GET
     @Path("/{id}")
