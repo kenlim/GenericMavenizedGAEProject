@@ -33,7 +33,7 @@ public class TwiggyController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ViewToolContext context = velocityView.createContext(req, resp);
         String templatePath = ServletUtils.getPath(req);
-        Template template = velocityView.getTemplate(templatePath + ".vm");
+        Template template = velocityView.getTemplate("/templates" + templatePath + ".vm");
 
 
         context.put("message", "hello world");
